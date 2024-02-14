@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.MyApplication.MySplash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#F5FFFF </item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/in_alpha_logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.MyApplication</item>
+    </style>
+
+</resources>

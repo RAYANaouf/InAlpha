@@ -67,6 +67,8 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    //splash screen
+    implementation("androidx.core:core-splashscreen:1.0.0")
 
     //view model
     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-compose
