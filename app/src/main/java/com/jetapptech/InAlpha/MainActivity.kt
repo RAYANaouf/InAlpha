@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -17,10 +18,14 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.jetapptech.InAlpha.ui.theme.MyApplicationTheme
 import com.jetapptech.InAlpha.ui.theme.color3
 import com.jetapptech.InAlpha.ui.theme.customWhite
 import com.jetapptech.InAlpha.view.material.topBar.InAlphaTopBar
+import com.jetapptech.InAlpha.view.screens.navigated.HomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +73,18 @@ fun mainScreen() {
 
         padding.calculateTopPadding()
 
+        val navController = rememberNavController()
+
+        NavHost(navController = navController , startDestination = "home" ){
+
+            composable( route = "home" ){
+                HomeScreen(
+                    modifier = Modifier
+                        .padding(top = padding.calculateTopPadding())
+                )
+            }
+
+        }
 
 
 

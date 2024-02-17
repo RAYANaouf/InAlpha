@@ -5,8 +5,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
-import com.example.daracademy.ui.theme.customWhite4
-import com.example.daracademy.ui.theme.customWhite7
+import com.jetapptech.InAlpha.ui.theme.customWhite7
 
 
 var textColor = customWhite7
