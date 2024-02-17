@@ -5,8 +5,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -17,7 +22,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -32,6 +39,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         installSplashScreen()
+
+        WindowCompat.setDecorFitsSystemWindows(window , false)
+
 
         setContent {
             MyApplicationTheme {
@@ -65,13 +75,15 @@ fun mainScreen() {
         topBar = {
             InAlphaTopBar(
                 modifier = Modifier
+                    .height(55.dp)
                     .background(customWhite)
             )
         },
-        containerColor = color3
+        containerColor = color3,
+        modifier = Modifier
+            .windowInsetsPadding(WindowInsets.statusBars)
     ) {padding->
 
-        padding.calculateTopPadding()
 
         val navController = rememberNavController()
 

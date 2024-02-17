@@ -1,8 +1,10 @@
 package com.jetapptech.InAlpha.view.screens.navigated
 
+import android.app.Activity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,10 +23,17 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.layoutId
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,11 +41,14 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
-import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import coil.compose.rememberAsyncImagePainter
 import com.example.bigsam.model.data.`object`.NormalTextStyles
 import com.jetapptech.InAlpha.ui.theme.customBlack2
 import com.jetapptech.InAlpha.ui.theme.customBlack6
+import com.jetapptech.InAlpha.ui.theme.customWhite
 import com.jetapptech.InAlpha.ui.theme.customWhite1
 import com.jetapptech.InAlpha.ui.theme.customWhite2
 import com.jetapptech.InAlpha.ui.theme.customWhite4
@@ -50,8 +62,37 @@ fun HomeScreen(
 ) {
 
 
+
+    var show by remember{
+        mutableStateOf(true)
+    }
+    val view = LocalView.current
+    val window = (view.context as Activity).window
+    val insetsController = WindowCompat.getInsetsController(window, view)
+
+
+
+    SideEffect {
+
+        window.statusBarColor = customWhite.toArgb()
+
+        if (!view.isInEditMode){
+            insetsController.apply {
+                hide(WindowInsetsCompat.Type.navigationBars())
+                systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            }
+        }
+        
+    }
+
+
+
     LazyColumn(
         modifier = modifier
+
+//            .clickable {
+//                show = !show
+//            }
     ){
 
         item {
