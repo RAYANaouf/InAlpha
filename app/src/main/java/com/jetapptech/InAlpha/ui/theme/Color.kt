@@ -46,6 +46,6 @@ val blue1 = Color(0xFF195D82)
 val blue2 = Color(0xFF1D71A0) //base1
 val blue3 = Color(0xFF2388C1)
 
-val color3 = Color(0xFFF5FFFF)
+val color3 = Color(0xFFFCFFFF)
 val color4 = Color(0xFFE0FFFF)
 val color5 = Color(0xFFCDFFFF)

@@ -31,6 +31,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalView
@@ -63,9 +64,6 @@ fun HomeScreen(
 
 
 
-    var show by remember{
-        mutableStateOf(true)
-    }
     val view = LocalView.current
     val window = (view.context as Activity).window
     val insetsController = WindowCompat.getInsetsController(window, view)
@@ -74,7 +72,7 @@ fun HomeScreen(
 
     SideEffect {
 
-        window.statusBarColor = customWhite.toArgb()
+        window.statusBarColor = Color.White.toArgb()
 
         if (!view.isInEditMode){
             insetsController.apply {
