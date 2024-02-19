@@ -79,10 +79,11 @@ dependencies {
     //navigation
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
-
-
     // https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout-compose
     implementation ("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
+
+
 
     //coil
     // https://mvnrepository.com/artifact/io.coil-kt/coil-compose

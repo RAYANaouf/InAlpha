@@ -1,6 +1,7 @@
 package com.jetapptech.InAlpha.view.screens.navigated
 
 import android.app.Activity
+import android.graphics.Color.parseColor
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -50,6 +51,7 @@ import com.example.bigsam.model.data.`object`.NormalTextStyles
 import com.jetapptech.InAlpha.ui.theme.customBlack2
 import com.jetapptech.InAlpha.ui.theme.customBlack6
 import com.jetapptech.InAlpha.ui.theme.customWhite
+import com.jetapptech.InAlpha.ui.theme.customWhite0
 import com.jetapptech.InAlpha.ui.theme.customWhite1
 import com.jetapptech.InAlpha.ui.theme.customWhite2
 import com.jetapptech.InAlpha.ui.theme.customWhite4
@@ -60,6 +62,7 @@ val img1 = "https://scontent.cdninstagram.com/v/t51.2885-19/427626253_8031609549
 @Composable
 fun HomeScreen(
     modifier : Modifier = Modifier
+        .background(Color(parseColor("#FCFCFC")))
 ) {
 
 
@@ -72,7 +75,7 @@ fun HomeScreen(
 
     SideEffect {
 
-        window.statusBarColor = Color.White.toArgb()
+        window.statusBarColor = Color(parseColor("#FFFFFF")).toArgb()
 
         if (!view.isInEditMode){
             insetsController.apply {
@@ -260,10 +263,10 @@ fun TopSection_post(
                         .clip(RoundedCornerShape(12.dp))
                         .border(
                             width = 1.5.dp,
-                            color = customWhite7,
+                            color = customWhite2,
                             shape = RoundedCornerShape(12.dp)
                         )
-                        .background(customWhite2)
+                        .background(customWhite0)
                 ) {
 
                 }
@@ -279,7 +282,7 @@ fun TopSection_post(
                             color = customWhite7,
                             shape = RoundedCornerShape(12.dp)
                         )
-                        .background(customWhite4)
+                        .background(customWhite0)
                 ) {
 
                 }

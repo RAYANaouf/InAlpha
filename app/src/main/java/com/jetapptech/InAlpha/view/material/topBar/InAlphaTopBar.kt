@@ -3,6 +3,7 @@ package com.jetapptech.InAlpha.view.material.topBar
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -45,54 +47,57 @@ fun InAlphaTopBar(
     modifier  : Modifier = Modifier,
     @DrawableRes logo    : Int = R.drawable.alpha,
     brand     : String   = "In-Alpha",
-    elevation : Dp = 6.dp
+    elevation : Dp = 1.dp
 ) {
 
     Surface(
         shadowElevation = elevation,
+        color    = Color.White ,
         modifier = modifier
             .windowInsetsPadding(WindowInsets.statusBars)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
             modifier = Modifier
                 .height(55.dp)
                 .fillMaxWidth()
+                .background(Color.Transparent)
         ){
             
-            Spacer(modifier = Modifier.width(16.dp))
+//            Spacer(modifier = Modifier.width(16.dp).background(Color.Transparent))
+//
+//            Image(
+//                painter = painterResource(id = logo),
+//                contentDescription = null,
+//                modifier = Modifier
+//                    .size(35.dp)
+//            )
+//
+//            Spacer(modifier = Modifier.width(8.dp))
 
-            Image(
-                painter = painterResource(id = logo),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(35.dp)
-            )
-            
-            Spacer(modifier = Modifier.width(8.dp))
-
-            Text(
-                text = buildAnnotatedString {
-                    withStyle(
-                        style = SpanStyle(color = blue1 , fontFamily = permanentMarker , fontSize = 26.sp)
-                    ){
-                        append("In")
-                    }
-                    withStyle(
-                        style = SpanStyle(fontFamily = permanentMarker)
-                    ){
-                        append("-")
-                    }
-                    withStyle(
-                        style = SpanStyle(color = blue3 , fontFamily = permanentMarker)
-                    ){
-                        append("Alpha")
-                    }
-                }
-            )
+//            Text(
+//                text = buildAnnotatedString {
+//                    withStyle(
+//                        style = SpanStyle(color = blue1 , fontFamily = permanentMarker , fontSize = 26.sp)
+//                    ){
+//                        append("In")
+//                    }
+//                    withStyle(
+//                        style = SpanStyle(fontFamily = permanentMarker)
+//                    ){
+//                        append("-")
+//                    }
+//                    withStyle(
+//                        style = SpanStyle(color = blue3 , fontFamily = permanentMarker)
+//                    ){
+//                        append("Alpha")
+//                    }
+//                }
+//            )
 
 
-            Spacer(modifier = Modifier.weight(1f))
+//            Spacer(modifier = Modifier.weight(1f))
 
 
             Row(
@@ -114,7 +119,7 @@ fun InAlphaTopBar(
                 )
             }
 
-            Spacer(modifier = modifier.width(16.dp))
+//            Spacer(modifier = Modifier.width(16.dp))
 
         }
     }

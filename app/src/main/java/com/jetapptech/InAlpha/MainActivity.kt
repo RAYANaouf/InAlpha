@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,6 +32,7 @@ import androidx.navigation.compose.rememberNavController
 import com.jetapptech.InAlpha.ui.theme.MyApplicationTheme
 import com.jetapptech.InAlpha.ui.theme.color3
 import com.jetapptech.InAlpha.ui.theme.customWhite
+import com.jetapptech.InAlpha.view.material.bottomBar.BottomBar
 import com.jetapptech.InAlpha.view.material.topBar.InAlphaTopBar
 import com.jetapptech.InAlpha.view.screens.navigated.HomeScreen
 
@@ -76,8 +78,10 @@ fun mainScreen() {
             InAlphaTopBar(
                 modifier = Modifier
                     .height(55.dp)
-                    .background(customWhite)
             )
+        },
+        bottomBar = {
+            BottomBar()
         },
         containerColor = color3,
         modifier = Modifier
@@ -92,7 +96,7 @@ fun mainScreen() {
             composable( route = "home" ){
                 HomeScreen(
                     modifier = Modifier
-                        .padding(top = padding.calculateTopPadding())
+                        .padding(top = padding.calculateTopPadding() , bottom = padding.calculateBottomPadding())
                 )
             }
 
