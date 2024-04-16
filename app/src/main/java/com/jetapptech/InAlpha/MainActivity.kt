@@ -85,8 +85,7 @@ class MainActivity : ComponentActivity() {
                         hideSystemBar(view)
                     }
 
-                    SignInScreen()
-                    
+
                     mainScreen()
 
                 }
