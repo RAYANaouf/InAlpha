@@ -40,7 +40,8 @@ val customBlack7 = Color(0xFF707070)
 val customBlack8 = Color(0xFF8A8A8A)
 
 /**************************************************/
-
+/******************* background ******************/
+val background_00 = Color(0xFFF5FFFF)
 /*********** img color  *****************/
 val blue1 = Color(0xFF195D82)
 val blue2 = Color(0xFF1D71A0) //base1

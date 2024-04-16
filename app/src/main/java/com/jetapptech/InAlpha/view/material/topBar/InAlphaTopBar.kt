@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
@@ -54,12 +55,13 @@ fun InAlphaTopBar(
         shadowElevation = elevation,
         color    = Color.White ,
         modifier = modifier
-            .windowInsetsPadding(WindowInsets.statusBars)
+//            .windowInsetsPadding(WindowInsets.statusBars)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
             modifier = Modifier
+                .windowInsetsPadding(WindowInsets.statusBars)
                 .height(55.dp)
                 .fillMaxWidth()
                 .background(Color.Transparent)

@@ -67,26 +67,6 @@ fun HomeScreen(
 
 
 
-    val view = LocalView.current
-    val window = (view.context as Activity).window
-    val insetsController = WindowCompat.getInsetsController(window, view)
-
-
-
-    SideEffect {
-
-        window.statusBarColor = Color(parseColor("#FFFFFF")).toArgb()
-
-        if (!view.isInEditMode){
-            insetsController.apply {
-                hide(WindowInsetsCompat.Type.navigationBars())
-                systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-            }
-        }
-        
-    }
-
-
 
     LazyColumn(
         modifier = modifier
@@ -177,7 +157,7 @@ fun TopSection_post(
         val nameRef    = createRefFor("name")
         val descRef    = createRefFor("desc")
         val photosRef  = createRefFor("photos")
-        val dividerRef = createRefFor("divider")
+//        val dividerRef = createRefFor("divider")
 
 
 
@@ -204,14 +184,14 @@ fun TopSection_post(
             start.linkTo(parent.start)
         }
 
-        constrain(dividerRef){
-            top.linkTo(imgRef.bottom , margin = 8.dp)
-            start.linkTo(imgRef.start)
-            end.linkTo(imgRef.end)
-            bottom.linkTo(parent.bottom)
-            width  = Dimension.value(1.5.dp)
-            height = Dimension.fillToConstraints
-        }
+//        constrain(dividerRef){
+//            top.linkTo(imgRef.bottom , margin = 8.dp)
+//            start.linkTo(imgRef.start)
+//            end.linkTo(imgRef.end)
+//            bottom.linkTo(parent.bottom)
+//            width  = Dimension.value(1.5.dp)
+//            height = Dimension.fillToConstraints
+//        }
     }
 
 
@@ -241,9 +221,9 @@ fun TopSection_post(
         )
         
         
-        Spacer(modifier = Modifier
-            .background(customWhite7)
-            .layoutId("divider"))
+//        Spacer(modifier = Modifier
+//            .background(customWhite7)
+//            .layoutId("divider"))
 
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(12.dp),

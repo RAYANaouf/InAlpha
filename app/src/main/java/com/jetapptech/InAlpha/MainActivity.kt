@@ -1,7 +1,9 @@
 package com.jetapptech.InAlpha
 
 import android.app.Activity
+import android.graphics.Color.parseColor
 import android.os.Bundle
+import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -17,7 +19,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
@@ -26,16 +35,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.jetapptech.InAlpha.model.objects.screens.screens
 import com.jetapptech.InAlpha.ui.theme.MyApplicationTheme
 import com.jetapptech.InAlpha.ui.theme.color3
 import com.jetapptech.InAlpha.ui.theme.customWhite
 import com.jetapptech.InAlpha.view.material.bottomBar.BottomBar
 import com.jetapptech.InAlpha.view.material.topBar.InAlphaTopBar
+import com.jetapptech.InAlpha.view.screens.fillScreen.signInScreen.SignInScreen
 import com.jetapptech.InAlpha.view.screens.navigated.HomeScreen
 
+
+
+private var start by mutableIntStateOf(0)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +62,8 @@ class MainActivity : ComponentActivity() {
 
 
         setContent {
+
+
             MyApplicationTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -53,11 +71,32 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
+                    val window = LocalView.current.context as Activity
+
+                    SideEffect {
+
+                        window.window.statusBarColor = customWhite.toArgb()
+
+                    }
+
+                    val view = LocalView.current
+
+                    LaunchedEffect(key1 = start ){
+                        hideSystemBar(view)
+                    }
+
+                    SignInScreen()
+                    
                     mainScreen()
 
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        start++
     }
 }
 
@@ -65,19 +104,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun mainScreen() {
 
-    val window = LocalView.current.context as Activity
+    val navController = rememberNavController()
 
-    SideEffect {
-
-        window.window.statusBarColor = customWhite.toArgb()
-
-    }
 
     Scaffold(
         topBar = {
             InAlphaTopBar(
                 modifier = Modifier
-                    .height(55.dp)
             )
         },
         bottomBar = {
@@ -85,16 +118,21 @@ fun mainScreen() {
         },
         containerColor = color3,
         modifier = Modifier
-            .windowInsetsPadding(WindowInsets.statusBars)
+//            .windowInsetsPadding(WindowInsets.statusBars)
     ) {padding->
 
 
-        val navController = rememberNavController()
-
         NavHost(navController = navController , startDestination = "home" ){
 
-            composable( route = "home" ){
+            composable( route = screens.homeScreen ){
                 HomeScreen(
+                    modifier = Modifier
+                        .padding(top = padding.calculateTopPadding() , bottom = padding.calculateBottomPadding())
+                )
+            }
+
+            composable( route = screens.signInScreen ){
+                SignInScreen(
                     modifier = Modifier
                         .padding(top = padding.calculateTopPadding() , bottom = padding.calculateBottomPadding())
                 )
@@ -104,6 +142,22 @@ fun mainScreen() {
 
 
 
+    }
+
+}
+
+
+
+fun hideSystemBar(view : View){
+    val window = (view.context as Activity).window
+    val insetsController = WindowCompat.getInsetsController(window, view)
+
+    window.statusBarColor = Color(parseColor("#FFFFFF")).toArgb()
+
+    insetsController.apply {
+        hide(WindowInsetsCompat.Type.navigationBars())
+        hide(WindowInsetsCompat.Type.statusBars())
+        systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
     }
 
 }
