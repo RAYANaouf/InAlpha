@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.example.alphaspace.screens.common.textFields.AlphaTextField
 import com.example.bigsam.model.data.`object`.NormalTextStyles
 import com.jetapptech.InAlpha.R
-import com.jetapptech.InAlpha.material.alphaButton.AlphaButton
+import com.jetapptech.InAlpha.view.material.alphaButton.AlphaButton
 import com.jetapptech.InAlpha.ui.theme.background_00
 
 @Composable

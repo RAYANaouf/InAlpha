@@ -1,4 +1,4 @@
-package com.jetapptech.InAlpha.material.alphaButton
+package com.jetapptech.InAlpha.view.material.alphaButton
 
 import android.graphics.Color.parseColor
 import androidx.compose.foundation.background

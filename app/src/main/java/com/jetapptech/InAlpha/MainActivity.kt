@@ -41,6 +41,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.jetapptech.InAlpha.model.objects.screens.screens
+import com.jetapptech.InAlpha.model.sealed.BottomBarItem
 import com.jetapptech.InAlpha.ui.theme.MyApplicationTheme
 import com.jetapptech.InAlpha.ui.theme.color3
 import com.jetapptech.InAlpha.ui.theme.customWhite
@@ -104,16 +105,25 @@ class MainActivity : ComponentActivity() {
 fun mainScreen() {
 
     val navController = rememberNavController()
-
+    var selectedBottomBarItem  by rememberSaveable() {
+        mutableStateOf(BottomBarItem.Home().name)
+    }
 
     Scaffold(
         topBar = {
             InAlphaTopBar(
+                elevation = 4.dp,
                 modifier = Modifier
             )
         },
         bottomBar = {
-            BottomBar()
+            BottomBar(
+                selectedItem = selectedBottomBarItem,
+                onClick = {
+                    selectedBottomBarItem = it
+                    
+                }
+            )
         },
         containerColor = color3,
         modifier = Modifier
