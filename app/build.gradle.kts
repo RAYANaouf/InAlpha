@@ -1,6 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -30,17 +33,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.9"
+        kotlinCompilerExtensionVersion = "1.4.8"
     }
     packaging {
         resources {
@@ -83,6 +86,21 @@ dependencies {
     implementation ("androidx.constraintlayout:constraintlayout-compose:1.0.1")
 
 
+    //hilt
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+//    //hilt viewmodel https://mvnrepository.com/artifact/androidx.hilt/hilt-lifecycle-viewmodel
+//    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
+//    // https://mvnrepository.com/artifact/androidx.hilt/hilt-compiler
+//    implementation("androidx.hilt:hilt-compiler:1.2.0")
+    // https://mvnrepository.com/artifact/androidx.hilt/hilt-navigation-compose
+//    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+
+
+
 
 
     //coil
@@ -109,4 +127,10 @@ dependencies {
     //implementation("com.mxalbert.sharedelements:shared-elements:0.1.0-SNAPSHOT")
 
 
+}
+
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
